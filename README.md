@@ -29,4 +29,5 @@
 
 
 
-## 界面预览 (123.jpg)
+## 界面预览 
+![网盘搜索GUI界面](https://github.com/dengle456/Ysou/blob/master/123.JPG?raw=true)
