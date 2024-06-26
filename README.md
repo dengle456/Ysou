@@ -1,5 +1,5 @@
 # YunSou
- 一款HTTP API 对接前端UI，简洁的搜素想要的文件。
+ 一款HTTP API 对接前端C# GUI.
 
 ## 对接格式 
 {
