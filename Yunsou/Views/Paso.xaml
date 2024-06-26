@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="ReloadPanClinet.Paso"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:rubyer="http://rubyer.io/winfx/xaml/toolkit"
+      xmlns:local="clr-namespace:ReloadPanClinet"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <!-- 定义ContextMenu -->
+        <ContextMenu x:Key="GridContextMenu" Name="Memu">
+            <MenuItem Header="收藏" Click="shoucang_Click" />
+            <MenuItem Header="查看详细信息" Click="SOopen_Click" />
+            <!-- 你可以在这里添加其他菜单项 -->
+        </ContextMenu>
+    </UserControl.Resources>
+    <Grid  Name="mainContainer">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="3"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Style="{DynamicResource TextButton}"  x:Name="Ttext" Content="云盘搜索"></Button>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="DPStext" Grid.Column="0" TextAlignment="Center" rubyer:InputBoxHelper.Watermark="输入你要搜索的资源."  />
+            <Button Grid.Column="1" Content="点击搜索" Click="Button_seach" />
+         
+        </Grid>
+        <ListView x:Name="listView" Grid.Row="2" MouseDoubleClick="listView_MouseDoubleClick" ItemsSource="{Binding DataEntries}">
+            <ListView.ItemContainerStyle>
+                <Style BasedOn="{StaticResource RubyerListViewItem}" TargetType="ListViewItem">
+                    <Setter Property="ContextMenu" Value="{StaticResource GridContextMenu}"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView x:Name="listv">
+                    <GridViewColumn Header="序" Width="30" DisplayMemberBinding="{Binding Id}"  />
+                    <GridViewColumn Header="名称" Width="280" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="网页链接" Width="120" DisplayMemberBinding="{Binding Url}" />
+                    <GridViewColumn Header="密码" Width="80" DisplayMemberBinding="{Binding pass}" />
+                    <GridViewColumn Header="上传时间" Width="170" DisplayMemberBinding="{Binding Time}" />
+                    <GridViewColumn Header="用户" Width="100" DisplayMemberBinding="{Binding User}" />
+                    <GridViewColumn Header="UID" Width="0" DisplayMemberBinding="{Binding uuid}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ProgressBar Grid.Row="3" Name="jdt" IsIndeterminate="False"  Margin="0 -1 0 0 "  Value="{Binding Progress}" Background="#fff" Foreground="#FFEAAEA5" />
+        <Grid Grid.Row="4" Cursor="">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Style="{DynamicResource TextButton}" Name="jdttile" IsEnabled="True" FontFamily="Showcard Gothic" Content="----"  ></Button>
+            <StackPanel Orientation="Horizontal" Grid.Column="1"  >
+                <Button Width="100" Style="{DynamicResource OutlineButton}" Content="清理页面" Click="pageup_Click" ></Button>
+                <Button Width="100" Style="{DynamicResource OutlineButton}" Content="下一页" Click="pageDown_Cilick"></Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
